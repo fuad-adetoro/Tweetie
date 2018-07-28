@@ -54,8 +54,8 @@ class ListPeopleViewController: UIViewController {
       .disposed(by: bag)
 
     //show message when no account available
-    
-  }
+    viewModel.people.asDriver().map { $0 != nil }.drive(messageView.rx.isHidden).disposed(by: bag)
+    }
 }
 
 extension ListPeopleViewController: UITableViewDataSource {
